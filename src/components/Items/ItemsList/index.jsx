@@ -1,33 +1,23 @@
-import { useState, useEffect } from "react";
+import useFetch from '../../../Hooks/useFetch';
+import './index.css'
 
 function ItemsList() {
-  const [items, setItems] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const { data: todos, isLoading, isError} = useFetch('todos');
 
-  useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/todos")
-      .then((response) => response.json())
-      .then((data) => {
-          setItems(data);
-          setLoading(false);
-      }).catch((error) => {
-        console.log("Error fetching items:", error);
-        setLoading(false);
-      })
-  }, []);
+  if (isError) { return <p className='error'>Something went wrong...</p> }
 
-    return (
-      <div>
-          <h2>Items List</h2>
-          {loading ? <p>Loading...</p> : (
-            <ul>
-              {items.map((item) => (
-                <li key={item.id}>{item.title}</li>
-              ))}
-            </ul>
-          ) }
-      </div>
-    );
+  return (
+    <div>
+        <h2>Items List</h2>
+        {isLoading ? <p>Loading...</p> : (
+          <ul>
+            {todos.map((item) => (
+              <li key={item.id}>{item.title}</li>
+            ))}
+          </ul>
+        ) }
+    </div>
+  );
 }
 
 export default ItemsList;
