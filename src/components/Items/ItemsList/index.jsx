@@ -12,7 +12,7 @@ function ItemsList() {
         {isLoading ? <p>Loading...</p> : (
           <ul>
             {todos.map((item) => (
-              <li key={item.id}>{item.title}</li>
+              <li key={item.id} className='item'>{item.title}</li>
             ))}
           </ul>
         ) }

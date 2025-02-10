@@ -3,6 +3,8 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  --error-bg-color: #ea5712;
+  --main-color: #646cff;
 }
 
 ul {
@@ -12,7 +14,7 @@ ul {
 
 
 .error {
-  background-color: #ea5712;
+  background-color: var(--error-bg-color);
   padding: 20px;
   border-radius: 5px;
   color: #fff;
