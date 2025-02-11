@@ -1,23 +1,23 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
+import SearchInput from "../SearchInput";
 
-function Counter() {
-    const [count, setCount] = useState(0);
-    const [text, setText] = useState("");
+const Counter = () => {
+  const [count, setCount] = useState(0);
 
-    console.log("Counter component rendered");
-  
-    return (
-      <div>
-        <h2>Counter: {count}</h2>
-        <button onClick={() => setCount(count + 1)}>Increment</button>
+  console.log("Counter component rendered");
 
-        <br />
+  const increment = useCallback(() => {
+    setCount((prevCount) => prevCount + 1);
+  }, []);
 
-        <input
-          type="text"
-          value={text}
-          onChange={(e) => setText(e.target.value)} placeholder="Type something..."
-        />
+  return (
+    <div>
+      <h2>Counter: {count}</h2>
+      <button onClick={increment}>Increment</button>
+      <br />
+      <SearchInput />
     </div>
-); }
+  );
+};
+
 export default Counter;
